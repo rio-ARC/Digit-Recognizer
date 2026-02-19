@@ -1,9 +1,9 @@
-// ── Canvas Drawing Setup ──
+
 const canvas = document.getElementById('draw-canvas');
 const ctx = canvas.getContext('2d');
 let isDrawing = false;
 
-// Initialize canvas with black background
+
 function clearCanvas() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -11,14 +11,14 @@ function clearCanvas() {
     resetChart();
 }
 
-// Drawing settings
+//Drawing settings
 ctx.lineWidth = 20;
 ctx.lineCap = 'round';
 ctx.lineJoin = 'round';
 ctx.strokeStyle = '#fff';
 clearCanvas();
 
-// ── Mouse Events ──
+//Mouse Events
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
     ctx.beginPath();
@@ -36,7 +36,7 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseup', () => { isDrawing = false; });
 canvas.addEventListener('mouseleave', () => { isDrawing = false; });
 
-// ── Touch Events (mobile) ──
+//Touch Events (mobile)
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
     isDrawing = true;
@@ -79,7 +79,7 @@ function getTouchPos(e) {
     };
 }
 
-// ── Button Handlers ──
+//Button Handlers
 document.getElementById('btn-clear').addEventListener('click', clearCanvas);
 document.getElementById('btn-check').addEventListener('click', checkDigit);
 
@@ -114,19 +114,19 @@ async function checkDigit() {
     }
 }
 
-// ── Bar Chart ──
+//Bar Chart
 function initChart() {
     const barsContainer = document.getElementById('chart-bars');
     const labelsContainer = document.getElementById('chart-labels');
 
     for (let i = 0; i < 10; i++) {
-        // Percentage label
+
         const label = document.createElement('span');
         label.id = `label-${i}`;
         label.textContent = '0.0%';
         labelsContainer.appendChild(label);
 
-        // Bar wrapper + bar
+
         const wrapper = document.createElement('div');
         wrapper.className = 'bar-wrapper';
         const bar = document.createElement('div');
@@ -144,11 +144,11 @@ function updateChart(probabilities, winnerDigit) {
         const label = document.getElementById(`label-${i}`);
         const prob = probabilities[i];
 
-        // Height: min 3px, max 100% of chart height
+
         const height = Math.max(2, prob) + '%';
         bar.style.height = height;
 
-        // Highlight winner
+
         if (i === winnerDigit) {
             bar.classList.add('active');
         } else {
@@ -171,7 +171,7 @@ function resetChart() {
     }
 }
 
-// ── Twinkling Stars ──
+//Twinkling Stars
 function generateStars() {
     const container = document.getElementById('stars-container');
     const count = 55;
@@ -199,6 +199,6 @@ function generateStars() {
     }
 }
 
-// ── Initialize ──
+
 initChart();
 generateStars();

@@ -1,12 +1,3 @@
-"""
-CNN Handwritten Digit Recognizer - Prediction Script
-Loads the trained model and predicts digits from custom images.
-
-Usage:
-    python predict.py <image_path>
-    python predict.py test_digit.png
-"""
-
 import sys
 import os
 import numpy as np
@@ -20,20 +11,10 @@ MODEL_PATH = 'mnist_digit_model.keras'
 
 
 def preprocess_image(image_path):
-    """
-    Load and preprocess an image for MNIST prediction.
-    - Convert to grayscale
-    - Resize to 28x28
-    - Invert if needed (MNIST expects white digit on black background)
-    - Normalize to [0, 1]
-    - Reshape to (1, 28, 28, 1)
-    """
-    img = Image.open(image_path).convert('L')  # grayscale
+    img = Image.open(image_path).convert('L')
     img = img.resize((28, 28), Image.LANCZOS)
     img_array = np.array(img, dtype=np.float32)
 
-    # MNIST uses white-on-black. If mean pixel > 127, the background is light
-    # so we invert to make it white-on-black.
     if np.mean(img_array) > 127:
         img_array = 255.0 - img_array
 
@@ -43,7 +24,6 @@ def preprocess_image(image_path):
 
 
 def predict_digit(model, image_path):
-    """Run prediction and display results."""
     img_array = preprocess_image(image_path)
 
     predictions = model.predict(img_array, verbose=0)
@@ -59,7 +39,6 @@ def predict_digit(model, image_path):
         bar = '█' * int(predictions[0][i] * 30)
         print(f"    {i}: {predictions[0][i]*100:6.2f}%  {bar}")
 
-    # Save visualization
     output_path = 'prediction_result.png'
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 
