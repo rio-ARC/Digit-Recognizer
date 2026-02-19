@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+
+# Original source files (not part of the final project)
+digit_recognizer.py
+Digit_recognizer.ipynb
+archive.zip
+
+# Dataset
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Trained model (too large for repo, retrain locally)
+*.keras
+*.h5
+
+
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test images
+test_digit*.png

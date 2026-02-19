@@ -1,0 +1,301 @@
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ── Twinkling Stars ── */
+#stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    opacity: 0;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: var(--max-opacity);
+    }
+}
+
+/* ── Main Layout ── */
+.main-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ── App Container ── */
+.app-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 75vw;
+    max-width: 1200px;
+}
+
+/* ── Canvas Section ── */
+.canvas-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.canvas-wrapper {
+    border: 2px dashed #444;
+    padding: 4px;
+    background: #000;
+}
+
+#draw-canvas {
+    display: block;
+    background: #000;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.button-group {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    padding: 10px 30px;
+    background: transparent;
+    color: #fff;
+    border: 2px dashed #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+/* ── Prediction Section ── */
+.prediction-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.prediction-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.predicted-digit {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 3rem;
+    margin-bottom: 16px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Bar Chart ── */
+.chart-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2px;
+    margin-bottom: 4px;
+}
+
+.chart-labels span {
+    width: 10%;
+    text-align: center;
+    font-size: 0.65rem;
+    opacity: 0.7;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 160px;
+    padding: 0 2px;
+    border-bottom: 2px dashed #444;
+}
+
+.bar-wrapper {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 3px;
+}
+
+.bar {
+    width: 100%;
+    background: #555;
+    min-height: 3px;
+    transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background 0.3s ease;
+    border-radius: 1px 1px 0 0;
+}
+
+.bar.active {
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.chart-digits {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 2px 0;
+}
+
+.chart-digits span {
+    width: 10%;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* ── Footer ── */
+.footer {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.5;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.info-icon {
+    font-size: 1.1rem;
+    cursor: help;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.info-icon:hover {
+    opacity: 1;
+}
+
+/* ── Loading State ── */
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.3rem;
+    }
+
+    .app-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .canvas-wrapper {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    #draw-canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .prediction-section {
+        min-width: unset;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .predicted-digit {
+        font-size: 2.2rem;
+    }
+
+    .chart-bars {
+        height: 120px;
+    }
+}
