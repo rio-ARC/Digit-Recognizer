@@ -14,9 +14,7 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Trained model (too large for repo, retrain locally)
-*.keras
-*.h5
+
 
 
 
