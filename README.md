@@ -2,7 +2,7 @@
 title: DigitVision
 emoji: ✍️
 colorFrom: gray
-colorTo: black
+colorTo: indigo
 sdk: docker
 pinned: false
 ---
