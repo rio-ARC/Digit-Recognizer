@@ -28,7 +28,7 @@ A CNN-based handwritten digit recognizer with a web interface. Draw any digit (0
 - Real-time digit prediction with confidence bar chart
 - MNIST-style preprocessing (bounding box crop, centering, 28×28 normalization)
 - Data augmentation trained model (rotation, shift, zoom, shear)
-- Dark-themed responsive UI
+- Dark-themed responsive UI with a starry background.
 
 ## Model Architecture
 
